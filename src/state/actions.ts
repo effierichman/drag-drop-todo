@@ -20,6 +20,15 @@ export type Action =
       type: "SET_DRAGGED_ITEM";
       payload: DragItem | null;
       // It will hold the DragItem that we defined earlier. We want to be able to set it to null if we are not dragging anything. We are not using the undefined here because it would mean that the field could be omitted. In our case it’s not true, it can just be empty sometimes.
+    }
+  | {
+      type: "MOVE_TASK";
+      payload: {
+        draggedItemId: string;
+        hoveredItemId: string | null;
+        sourceColumnId: string;
+        targetColumnId: string;
+      };
     };
 
 // • ADD_LIST - contains the list title.
@@ -50,4 +59,19 @@ export const moveList = (draggedId: string, hoverId: string): Action => ({
 export const setDraggedItem = (draggedItem: DragItem | null): Action => ({
   type: "SET_DRAGGED_ITEM",
   payload: draggedItem,
+});
+
+export const moveTask = (
+  draggedItemId: string,
+  hoveredItemId: string | null,
+  sourceColumnId: string,
+  targetColumnId: string
+): Action => ({
+  type: "MOVE_TASK",
+  payload: {
+    draggedItemId,
+    hoveredItemId,
+    sourceColumnId,
+    targetColumnId,
+  },
 });
