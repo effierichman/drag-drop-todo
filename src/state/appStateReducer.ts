@@ -1,6 +1,7 @@
 import { Action } from "./actions";
 import { nanoid } from "nanoid";
 import { findItemIndexById, moveItem } from "../utils/arrayUtils";
+import { DragItem } from "../DragItem";
 
 export type Task = {
   id: string;
@@ -15,6 +16,7 @@ export type List = {
 
 export type AppState = {
   lists: List[];
+  draggedItem: DragItem | null;
 };
 
 export const appStateReducer = (
@@ -46,6 +48,11 @@ export const appStateReducer = (
       const dragIndex = findItemIndexById(draft.lists, draggedId);
       const hoverIndex = findItemIndexById(draft.lists, hoverId);
       draft.lists = moveItem(draft.lists, dragIndex, hoverIndex);
+      break;
+    }
+    // In this block, we set the draggedItem field of our draft state to whatever we get from the action.payload.
+    case "SET_DRAGGED_ITEM": {
+      draft.draggedItem = action.payload;
       break;
     }
   }
