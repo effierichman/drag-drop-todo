@@ -16,7 +16,7 @@ export const NewItemForm = ({ onAdd }: NewItemFormProps) => {
   const inputRef = useFocus();
 
   const handleAddText = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === "Enter") {
+    if (event.key === "Enter" && text !== "") {
       onAdd(text);
     }
   };
@@ -28,7 +28,15 @@ export const NewItemForm = ({ onAdd }: NewItemFormProps) => {
         onChange={(e) => setText(e.target.value)}
         onKeyPress={handleAddText}
       />
-      <NewItemButton onClick={() => onAdd(text)}>Create</NewItemButton>
+      <NewItemButton
+        onClick={() => {
+          if (text !== "") {
+            onAdd(text);
+          }
+        }}
+      >
+        Create
+      </NewItemButton>
     </NewItemFormContainer>
   );
 };
