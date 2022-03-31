@@ -1,4 +1,8 @@
-import { AppContainer } from "./styles/styles";
+import {
+  AppContainer,
+  AppAddContainerItem,
+  AppContainerItem,
+} from "./styles/styles";
 import { Column } from "./components/Column";
 import { AddNewItem } from "./components/AddNewItem";
 import { useAppState } from "./state/AppStateContext";
@@ -10,14 +14,18 @@ export const App = () => {
 
   return (
     <AppContainer>
-      <CustomDragLayer />
-      {lists.map((list) => (
-        <Column text={list.text} key={list.id} id={list.id} />
-      ))}
-      <AddNewItem
-        toggleButtonText="+ Add another todo list"
-        onAdd={(text) => dispatch(addList(text))}
-      />
+      <AppAddContainerItem>
+        <AddNewItem
+          toggleButtonText="+ Add another todo list"
+          onAdd={(text) => dispatch(addList(text))}
+        />
+      </AppAddContainerItem>
+      <AppContainerItem>
+        <CustomDragLayer />
+        {lists.map((list) => (
+          <Column text={list.text} key={list.id} id={list.id} />
+        ))}
+      </AppContainerItem>
     </AppContainer>
   );
 };
