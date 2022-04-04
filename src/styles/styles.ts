@@ -3,11 +3,14 @@ import styled from "styled-components";
 export const AppContainer = styled.div`
   background-color: #3179ba;
   display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
+  flex-direction: column;
   height: 100%;
-  padding: 20px;
+  padding: 0px;
   width: 100%;
+  @media (max-width: 720px) {
+    height: auto;
+    flex-direction: row;
+  }
 `;
 
 export const AppContainerItem = styled.div`
@@ -16,22 +19,34 @@ export const AppContainerItem = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  height: 100%;
+  height: auto;
   padding: 20px;
   width: 100%;
-  @media (max-width: 668px) {
+  @media (max-width: 720px) {
     flex-direction: column;
     align-items: center;
+    padding-top: 100px;
   }
 `;
 export const AppAddContainerItem = styled.div`
   align-items: center;
+  justify-content: center;
   background-color: #3179ba;
   display: flex;
-  flex-direction: column;
-  height: 10%;
+  flex-direction: row;
+  max-height: 100px;
   padding: 20px;
+  padding-bottom: 20px;
   width: 100%;
+  @media (max-width: 720px) {
+    position: fixed;
+    max-width: 300px;
+    flex-direction: column;
+    align-items: center;
+
+
+
+]  }
 `;
 
 type DragPreviewContainerProps = {
@@ -49,10 +64,11 @@ export const ColumnContainer = styled(DragPreviewContainer)`
   width: 300px;
   min-height: 40px;
   margin-right: 20px;
+  margin-bottom: 20px;
   border-radius: 3px;
   padding: 8px 8px;
   flex-grow: 0;
-  @media (max-width: 668px) {
+  @media (max-width: 720px) {
     margin-bottom: 20px;
     margin-right: 0px;
   }
